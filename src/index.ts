@@ -3,26 +3,43 @@ type Subscriber = (
   store: Store
 ) => void
 
-export interface Call {
+export interface CallFunc {
   <R>(method: () => R): R;
   <A, R>(method: (a: A) => R, a: A): R;
   <A, B, R>(method: (a: A, b: B) => R, a: A, b: B): R;
 }
 
+export interface Call extends CallFunc {
+  for<R>(method: () => R): () => R;
+  for<A, R>(method: (a: A) => R): (a: A) => R;
+  for<A, B, R>(method: (a: A, b: B) => R): (a: A, b: B) => R;
+}
+
+const makeCall = (call: CallFunc): Call => Object.assign(call, {
+  // XXX: 本当はインスタンスに紐付いたメソッドを直接返せると関数生成する必要がなくなるけど、
+  // 監視の仕組みがないと無理。
+  // XXX: 事前に引数をバインドしたくなるけど、メソッドを返す事はできなくなる
+  for: (method: any) => (...args: any[]) => call(method, ...args)
+})
+
 export class Store {
   private states: Map<Function, {}> = new Map();
   private subscribers: Subscriber[] = [];
 
-  constructor() {
-    this.call = this.call.bind(this)
-  }
-
-  call: Call = (method: any, ...args: any[]): any => {
+  // XXX: getterは状態変更ではないので処理を変えないといけない。
+  // 通知はいらないし、subscribe内で getter 使うと無限ループ。
+  call: Call = makeCall((method: any, ...args: any[]): any => {
     const state = this.states.get(method.__class__)
 
     // XXX: もし state が無かったらエラーになるけどそこはどうしようもなさそう。。
-    return method.apply(state, args)
-  }
+    const result = method.apply(state, args)
+
+    this.subscribers.forEach(sb => {
+      sb(method, this)
+    })
+
+    return result
+  })
 
   watch = (states: Array<{}>): void => {
     this.states = new Map()
@@ -36,6 +53,10 @@ export class Store {
     return () => {
       this.subscribers = this.subscribers.filter(s => s !== sb)
     }
+  }
+
+  get<P, C extends Class<P>>(clazz: C): P | undefined {
+    return <P>this.states.get(clazz)
   }
 }
 
@@ -69,6 +90,10 @@ export function makeStore(
 //   check() {
 //     console.log('YEY!', this.v)
 //   }
+
+//   greet(name: string): string {
+//     return `Hello, ${name}!`
+//   }
 // }
 
 // const FooC = makeCalls(Foo)
@@ -83,3 +108,6 @@ export function makeStore(
 // store.watch([f])
 
 // store.call(FooC.check)
+
+// const s: string = store.call.for(FooC.greet)('john')
+// console.log(s)
