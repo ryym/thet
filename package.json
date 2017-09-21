@@ -1,0 +1,17 @@
+{
+  "name": "thill",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "tsc -w"
+  },
+  "devDependencies": {
+    "@types/prop-types": "^15.5.1",
+    "@types/react": "^16.0.5",
+    "@types/react-dom": "^15.5.4",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "typescript": "^2.5.2"
+  }
+}
