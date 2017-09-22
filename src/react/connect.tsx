@@ -14,7 +14,7 @@ export type ConnectorState<P> = {
   mappedProps: P
 }
 
-export default function connect<S, P, WP = {}>(
+export default function connect<P, WP = {}>(
   WrappedComponent: ReactComponent<P>,
   config: ConnectConfig<P, WP>
 ): ComponentClass<WP> {
@@ -23,8 +23,8 @@ export default function connect<S, P, WP = {}>(
   class Connected extends React.Component<WP, ConnectorState<P>> {
     static contextTypes = contextTypes
 
-    private store: Store
-    private mapProps: (wrapperProps: WP) => P
+    private readonly store: Store
+    private readonly mapProps: (wrapperProps: WP) => P
     private unsubscribe: (() => void) | null = null
 
     constructor(props: WP, context: any) {
