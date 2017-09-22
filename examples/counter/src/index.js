@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { render } from 'react-dom'
-import { makeStore, makeCalls } from 'thill'
+import { makeStore, methodsOf } from 'thill'
 
-class State {
-  constructor(call, count = 0) {
-    this.call = call
+class CounterState {
+  constructor(send, count = 0) {
+    this.send = send
     this.count = count
   }
 
@@ -12,38 +12,40 @@ class State {
     return this.count
   }
 
-  increment() {
+  $increment() {
     this.count += 1
   }
 
-  incrementIfOdd() {
+  $incrementIfOdd() {
     if (this.count % 2 === 1) {
       this.count += 1
     }
   }
 
+  // XXX: async 自体の通知はなくてもいいけど、名前は統一したいというケースが結構ありそう。
+  // decorator が使えれば一番良い。
   incrementAsync(delay) {
     setTimeout(() => {
-      this.call(C.increment)
+      this.send(this.$increment)
     }, delay)
   }
 }
 
-const C = makeCalls(State)
+const C = methodsOf(CounterState)
 
-const Counter = ({ value = 0, call }) => {
+const Counter = ({ value = 0, send }) => {
   return (
     <div>
       <p>
         Clicked: {value} times
       </p>
-      <button onClick={() => call(C.increment)}>
+      <button onClick={() => send(C.$increment)}>
         Increment
       </button>
-      <button onClick={() => call(C.incrementIfOdd)}>
+      <button onClick={send.to(C.$incrementIfOdd)}>
         IncrementIfOdd
       </button>
-      <button onClick={() => call(C.incrementAsync, 500)}>
+      <button onClick={() => send(C.incrementAsync, 500)}>
         IncrementAsync
       </button>
     </div>
@@ -51,19 +53,19 @@ const Counter = ({ value = 0, call }) => {
 };
 
 const renderCounter = (store) => {
-  const count = store.get(State).getCount() // XXX
+  const count = store.send(C.getCount)
   render(
-    <Counter value={count} call={store.call} />,
+    <Counter value={count} send={store.send} />,
     document.getElementById('root')
   )
 }
 
-const store = makeStore(call => [
-  new State(call)
+const store = makeStore(send => [
+  new CounterState(send)
 ])
 
 store.subscribe((method) => {
-  console.log('Dispatched', method.name, store.get(State))
+  console.log('Dispatched', method.name, store.getState(CounterState))
   renderCounter(store)
 })
 

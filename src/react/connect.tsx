@@ -1,13 +1,13 @@
 import * as React from 'react'
 import { ComponentClass, StatelessComponent } from 'react'
 import shallowEqual from './utils/shallow-equal'
-import { Store, Call } from '../'
+import { Store, Send } from '../'
 import contextTypes from './context-types'
 
 export type ReactComponent<P> = ComponentClass<P> | StatelessComponent<P>;
 
 export type ConnectConfig<P, WP> = {
-  mapProps: (call: Call) => (wrapperProps: WP) => P
+  mapProps: (send: Send) => (wrapperProps: WP) => P
 }
 
 export type ConnectorState<P> = {
@@ -30,7 +30,7 @@ export default function connect<S, P, WP = {}>(
     constructor(props: WP, context: any) {
       super(props, context)
       this.store = context.store
-      this.mapProps = makeMapProps(this.store.call)
+      this.mapProps = makeMapProps(this.store.send)
       const mappedProps = this.mapProps(this.props)
       this.state = { mappedProps }
     }
