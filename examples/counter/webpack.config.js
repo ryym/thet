@@ -14,7 +14,7 @@ module.exports = {
 
   resolve: {
     alias: {
-      thill: path.resolve(ROOT, '..', '..', 'dist')
+      thet: path.resolve(ROOT, '..', '..', 'dist')
     }
   },
 

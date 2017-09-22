@@ -35,12 +35,12 @@ export class Store {
   // XXX: getterは状態変更ではないので処理を変えないといけない。
   // 通知はいらないし、subscribe内で getter 使うと無限ループ。
   send: Send = makeSend((method: any, ...args: any[]): any => {
-    const state = this.states.get(method.__thill__.clazz)
+    const state = this.states.get(method.__thet__.clazz)
 
     // XXX: もし state が無かったらエラーになるけどそこはどうしようもなさそう。。
     const result = method.apply(state, args)
 
-    if (method.__thill__.isUpdater) {
+    if (method.__thet__.isUpdater) {
       this.subscribers.forEach(sb => {
         sb(method, this)
       })
@@ -77,7 +77,7 @@ export function methodsOf<Proto>(clazz: Class<Proto>): Proto
 export function methodsOf(clazz: any): any {
   return Object.getOwnPropertyNames(clazz.prototype).reduce((calls: any, name) => {
     calls[name] = clazz.prototype[name]
-    calls[name].__thill__ = {
+    calls[name].__thet__ = {
       clazz,
       // isUpdater: /[A-Z]/.test(name[0]) // とりあえず大文字始まりなら更新メソッド
       isUpdater: name[0] === '$'

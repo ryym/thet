@@ -14,9 +14,6 @@ module.exports = {
 
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
-    alias: {
-      dux: path.resolve(ROOT, '..', '..', 'src')
-    }
   },
 
   module: {
