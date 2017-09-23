@@ -13,9 +13,18 @@ const emptyConstructor = () => {
   throw new Error('You can not use constructor as a method.')
 }
 
-export function methodsOf<Proto>(clazz: Class<Proto>): Proto
+// XXX: for now
+const defaultIsUpdater = (method: Function) => method.name[0] === '$'
 
-export function methodsOf(clazz: any): any {
+export type MethodsOf = <Proto>(
+  clazz: Class<Proto>,
+  config?: { isUpdater: (method: Function) => boolean }
+) => Proto
+
+export const methodsOf: MethodsOf = (
+  clazz: any,
+  { isUpdater = defaultIsUpdater }: any = {}
+): any => {
   const methods = { constructor: emptyConstructor }
 
   return Object.getOwnPropertyNames(clazz.prototype).reduce((ms: any, name) => {
@@ -24,11 +33,10 @@ export function methodsOf(clazz: any): any {
       return ms
     }
 
-    const meta = Object.assign({
-      clazz,
-      isUpdater: name[0] === '$' // XXX: For now
-    }, method[META_DATA_KEY])
-
+    const meta = Object.assign(
+      { clazz, isUpdater: isUpdater(method) },
+      method[META_DATA_KEY]
+    )
     method[META_DATA_KEY] = meta
     ms[name] = method
 
