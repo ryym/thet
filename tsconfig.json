@@ -9,7 +9,7 @@
         "sourceMap": false,
         "declaration": false,
         "allowSyntheticDefaultImports": false,
-        "experimentalDecorators": false,
+        "experimentalDecorators": true,
         "emitDecoratorMetadata": false,
         "strictNullChecks": true,
         "outDir": "dist",

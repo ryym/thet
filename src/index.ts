@@ -1,8 +1,13 @@
 import { Send } from './send'
 import { Store } from './store'
+import { methodsOf, markAsUpdater } from './methods'
 
-export { Store, Send }
-export { default as methodsOf } from './methods-of'
+export {
+  Store,
+  Send,
+  methodsOf,
+  markAsUpdater as updater
+}
 
 export function makeStore(
   makeStates: (send: Send) => Array<{}>
