@@ -9,9 +9,15 @@ export function markAsUpdater(
   }
 }
 
+const emptyConstructor = () => {
+  throw new Error('You can not use constructor as a method.')
+}
+
 export function methodsOf<Proto>(clazz: Class<Proto>): Proto
 
 export function methodsOf(clazz: any): any {
+  const methods = { constructor: emptyConstructor }
+
   return Object.getOwnPropertyNames(clazz.prototype).reduce((ms: any, name) => {
     const method = clazz.prototype[name]
     if (typeof method !== 'function' || method.name === 'constructor') {
@@ -27,5 +33,5 @@ export function methodsOf(clazz: any): any {
     ms[name] = method
 
     return ms
-  }, {})
+  }, methods)
 }
