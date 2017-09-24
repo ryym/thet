@@ -11,6 +11,9 @@ export class Store {
   private subscribers: Subscriber[] = [];
 
   send: Send = makeSend((method: any, ...args: any[]): any => {
+    if (typeof method !== 'function') {
+      throw new Error(`'send' accepts functions only. passed: ${method}`)
+    }
     if (!(META_DATA_KEY in method)) {
       return method(...args)
     }
