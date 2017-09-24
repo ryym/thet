@@ -12,22 +12,18 @@ module.exports = {
     publicPath: '/assets/',
   },
 
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
-  },
+  // resolve: {
+  //   alias: {
+  //     thet: path.resolve(ROOT, '..', '..', 'dist')
+  //   }
+  // },
 
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        loaders: [
-          'babel-loader',
-          'awesome-typescript-loader'
-        ],
-        include: [
-          path.join(ROOT, 'src'),
-          path.join(ROOT, '..', '..', 'src'),
-        ]
+        test: /\.js$/,
+        loader: 'babel-loader',
+        include: path.join(ROOT, 'src'),
       }
     ]
   },

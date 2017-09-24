@@ -13,17 +13,26 @@ module.exports = {
   },
 
   resolve: {
-    alias: {
-      thet: path.resolve(ROOT, '..', '..', 'dist')
-    }
+    extensions: ['.ts', '.tsx', '.js'],
   },
 
   module: {
     rules: [
       {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        include: path.join(ROOT, 'src'),
+        test: /\.tsx?$/,
+        loaders: [
+          // 'babel-loader',
+          // 'awesome-typescript-loader',
+          {
+            loader: 'awesome-typescript-loader',
+            options: {
+              configFileName: path.join(ROOT, 'tsconfig.json'),
+            },
+          }
+        ],
+        include: [
+          path.join(ROOT, 'src'),
+        ]
       }
     ]
   },

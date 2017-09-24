@@ -1,4 +1,5 @@
-import { makeStore }  from '../thet'
+import { makeStore }  from 'thet'
+
 import TodosState from './todos-state'
 import InputsState from './inputs-state'
 

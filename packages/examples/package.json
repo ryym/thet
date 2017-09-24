@@ -1,0 +1,16 @@
+{
+  "name": "thet-examples",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Example projects using Thet",
+  "license": "MIT",
+  "scripts": {
+    "counter": "root webpack-dev-server --config counter/webpack.config.js",
+    "todomvc": "root webpack-dev-server --config todomvc/webpack.config.js"
+  },
+  "devDependencies": {
+    "thet": "^0",
+    "thet-react": "^0",
+    "thet-root-bin": "file:../../root-bin"
+  }
+}

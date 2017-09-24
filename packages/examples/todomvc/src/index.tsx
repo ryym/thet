@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { render } from 'react-dom'
-import { Provider } from './thet-react'
+import { Provider } from 'thet-react'
 import makeStore from './store'
 import App from './components/App'
 
@@ -12,4 +12,3 @@ render(
   </Provider>,
   document.getElementById('root')
 )
-

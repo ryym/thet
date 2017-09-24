@@ -1,4 +1,4 @@
-import { Send, methodsOf } from '../thet'
+import { Send, methodsOf } from 'thet'
 import { Todo, TodoCounts } from '../lib/todo';
 import { SHOW_ACTIVE, SHOW_COMPLETED } from '../lib/todo-filters';
 import { Inputs } from './inputs-state'

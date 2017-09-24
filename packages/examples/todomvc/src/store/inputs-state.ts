@@ -1,4 +1,4 @@
-import { methodsOf } from '../thet'
+import { methodsOf } from 'thet'
 import { SHOW_ALL } from '../lib/todo-filters';
 
 export default class InputState {
