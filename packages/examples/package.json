@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "counter": "root webpack-dev-server --config counter/webpack.config.js",
-    "todomvc": "root webpack-dev-server --config todomvc/webpack.config.js"
+    "todomvc": "root webpack-dev-server --config todomvc/webpack.config.js",
+    "async": "root webpack-dev-server --config async/webpack.config.js"
   },
   "devDependencies": {
     "thet": "^0",
