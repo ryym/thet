@@ -1,9 +1,9 @@
 {
-  "name": "thet",
-  "version": "0.0.0",
+  "name": "thet-packages-root",
+  "private": true,
   "license": "MIT",
-  "scripts": {
-    "start": "tsc -w"
+  "dependencies": {
+    "lerna": "^2.2.0"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.3",
