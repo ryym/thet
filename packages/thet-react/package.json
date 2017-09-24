@@ -1,0 +1,22 @@
+{
+  "name": "thet-react",
+  "version": "0.0.0",
+  "description": "TODO",
+  "keywords": [],
+  "author": "ryym",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/types/index.d.ts",
+  "files": ["src", "dist"],
+  "scripts": {
+    "start": "root tsc -w",
+    "build": "root tsc"
+  },
+  "devDependencies": {
+    "thet": "^0",
+    "thet-root-bin": "file:../../root-bin"
+  },
+  "peerDependencies": {
+    "thet": "^0"
+  }
+}

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import contextTypes from './context-types'
-import { Store } from '../'
+import { Store } from 'thet'
 
 export type ProviderProps = {
   store: Store
