@@ -5,13 +5,18 @@
   "description": "Example projects using Thet",
   "license": "MIT",
   "scripts": {
-    "counter": "root webpack-dev-server --config counter/webpack.config.js",
-    "todomvc": "root webpack-dev-server --config todomvc/webpack.config.js",
-    "async": "root webpack-dev-server --config async/webpack.config.js"
+    "counter": "webpack-dev-server --config counter/webpack.config.js",
+    "todomvc": "webpack-dev-server --config todomvc/webpack.config.js",
+    "async": "webpack-dev-server --config async/webpack.config.js"
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.3",
+    "awesome-typescript-loader": "^3.2.3",
+    "classnames": "^2.2.5",
     "thet": "^0",
     "thet-react": "^0",
-    "thet-root-bin": "file:../../root-bin"
+    "thet-root-bin": "file:../../root-bin",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.8.2"
   }
 }
