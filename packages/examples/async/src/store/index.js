@@ -1,8 +1,11 @@
 import { makeStore } from 'thet'
 import AppState, { Act } from './app-state';
-import RedditState from './reddit-state';
+import RedditState, { RedditAct } from './reddit-state';
 
-export { Act }
+const MergedAct = Object.assign({}, Act, {
+  getOrInitReddit: RedditAct.getOrInitReddit,
+})
+export { MergedAct as Act }
 
 export default makeStore(send => [
   new AppState(send),

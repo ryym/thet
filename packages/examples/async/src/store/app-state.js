@@ -11,10 +11,6 @@ export default class AppState {
     return this.category;
   }
 
-  getOrInitReddit() {
-    return this.send(RedditAct.getOrInitReddit, this.category)
-  }
-
   setCategory(category) {
     this.category = category;
   }
