@@ -1,4 +1,4 @@
-import { makeStore } from 'thet'
+import { makeStore } from 'thisy'
 import AppState, { Act } from './app-state';
 import RedditState, { RedditAct } from './reddit-state';
 

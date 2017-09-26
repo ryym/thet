@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { ComponentClass, StatelessComponent } from 'react'
 import shallowEqual from './utils/shallow-equal'
-import { Store, Send } from 'thet'
+import { Store, Send } from 'thisy'
 import contextTypes from './context-types'
 
 export type ReactComponent<P> = ComponentClass<P> | StatelessComponent<P>;

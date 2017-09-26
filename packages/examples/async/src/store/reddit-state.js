@@ -1,4 +1,4 @@
-import { methodsOf } from 'thet'
+import { methodsOf } from 'thisy'
 import RedditMap from './reddit-map';
 import fetchRedditPosts from '../api/fetch-reddit-posts';
 

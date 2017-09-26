@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { render } from 'react-dom'
-import { makeStore, methodsOf } from 'thet'
+import { makeStore, methodsOf } from 'thisy'
 
 class CounterState {
   constructor(send, count = 0) {

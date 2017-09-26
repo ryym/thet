@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'thet-react'
+import { Provider } from 'thisy-react'
 import App from './components/App.connect';
 import store, { Act } from './store';
 

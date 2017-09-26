@@ -4,7 +4,7 @@ export interface Class<Proto> {
   new(...args: any[]): Proto
 }
 
-export const META_DATA_KEY = '__thet__'
+export const META_DATA_KEY = '__thisy__'
 
 export class Store {
   private states: Map<Function, {}> = new Map();

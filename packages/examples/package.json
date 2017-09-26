@@ -1,8 +1,8 @@
 {
-  "name": "thet-examples",
+  "name": "thisy-examples",
   "private": true,
   "version": "0.0.0",
-  "description": "Example projects using Thet",
+  "description": "Example projects using thisy",
   "license": "MIT",
   "scripts": {
     "counter": "webpack-dev-server --config counter/webpack.config.js",
@@ -13,9 +13,9 @@
     "@types/classnames": "^2.2.3",
     "awesome-typescript-loader": "^3.2.3",
     "classnames": "^2.2.5",
-    "thet": "^0",
-    "thet-react": "^0",
-    "thet-root-bin": "file:../../root-bin",
+    "thisy": "^0",
+    "thisy-react": "^0",
+    "thisy-root-bin": "file:../../root-bin",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.8.2"
   }

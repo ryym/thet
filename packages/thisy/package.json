@@ -1,5 +1,5 @@
 {
-  "name": "thet-react",
+  "name": "thisy",
   "version": "0.0.0",
   "description": "TODO",
   "keywords": [],
@@ -13,10 +13,6 @@
     "build": "root tsc"
   },
   "devDependencies": {
-    "thet": "^0",
-    "thet-root-bin": "file:../../root-bin"
-  },
-  "peerDependencies": {
-    "thet": "^0"
+    "thisy-root-bin": "file:../../root-bin"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "thet-root-bin",
+  "name": "thisy-root-bin",
   "description": "A private package to use root modules from the packages",
   "version": "0.1.0",
   "files": [

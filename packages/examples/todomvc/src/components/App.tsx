@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { connect } from 'thet-react'
-import { Send } from 'thet'
+import { connect } from 'thisy-react'
+import { Send } from 'thisy'
 import { TodoCounts } from '../lib/todo'
 import { Todos, Inputs } from '../store'
 import Header from './Header'

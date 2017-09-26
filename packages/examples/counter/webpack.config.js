@@ -12,12 +12,6 @@ module.exports = {
     publicPath: '/assets/',
   },
 
-  // resolve: {
-  //   alias: {
-  //     thet: path.resolve(ROOT, '..', '..', 'dist')
-  //   }
-  // },
-
   module: {
     rules: [
       {

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'thet-react'
+import { connect } from 'thisy-react'
 import { Act } from '../store'
 import Picker from '../components/Picker';
 import Posts from '../components/Posts';

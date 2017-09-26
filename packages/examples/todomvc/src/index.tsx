@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { render } from 'react-dom'
-import { Provider } from 'thet-react'
+import { Provider } from 'thisy-react'
 import makeStore from './store'
 import App from './components/App'
 

@@ -1,4 +1,4 @@
-import { methodsOf } from 'thet'
+import { methodsOf } from 'thisy'
 import { RedditAct } from './reddit-state'
 
 export default class AppState {

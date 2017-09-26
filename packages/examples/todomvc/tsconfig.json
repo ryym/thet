@@ -17,6 +17,6 @@
         ]
     },
     "include": [
-        "/Users/ryu/ghq/github.com/ryym/thet/packages/examples/todomvc/src"
+        "/Users/ryu/ghq/github.com/ryym/thisy/packages/examples/todomvc/src"
     ]
 }

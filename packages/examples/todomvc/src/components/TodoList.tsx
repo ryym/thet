@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { connect } from 'thet-react';
-import { Send } from 'thet'
+import { connect } from 'thisy-react';
+import { Send } from 'thisy'
 import { Todos, Inputs } from '../store'
 import TodoItem from './TodoItem';
 import { Todo } from '../lib/todo';
@@ -57,7 +57,7 @@ export default connect(TodoList, {
     // XXX: こういう状態横断的なメソッドはどこに置くべきか。
     // Wrampのようにクラスに階層を作るのはきれいだけど、
     // Viewがその階層を知る必要があるのが面倒だった。
-    // Thetの場合sendで自由に他の状態を知れる分、
+    // thisyの場合sendで自由に他の状態を知れる分、
     // 状態クラス同士の依存関係は気をつけないと破綻する。
     // 今回くらいの規模ならクラスを分けないのもありだけど。。
     todos: send(Todos.listFiltered),
