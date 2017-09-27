@@ -1,4 +1,4 @@
-import { methodsOf } from 'thisy'
+import { methodsOf, updater } from 'thisy'
 import { RedditAct } from './reddit-state'
 
 export default class AppState {
@@ -11,6 +11,7 @@ export default class AppState {
     return this.category;
   }
 
+  @updater
   setCategory(category) {
     this.category = category;
   }
@@ -41,6 +42,4 @@ export default class AppState {
   }
 }
 
-export const Act = methodsOf(AppState, {
-  isUpdater: m => m.name === 'setCategory',
-})
+export const Act = methodsOf(AppState)

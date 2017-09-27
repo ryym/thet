@@ -1,4 +1,4 @@
-import { methodsOf } from 'thisy'
+import { methodsOf, updater } from 'thisy'
 import RedditMap from './reddit-map';
 import fetchRedditPosts from '../api/fetch-reddit-posts';
 
@@ -27,6 +27,7 @@ export default class RedditState {
     });
   }
 
+  @updater
   startRedditRequest(category) {
     this.reddits.updateOrInit(category, data => ({
       ...data,
@@ -34,6 +35,7 @@ export default class RedditState {
     }));
   }
 
+  @updater
   succeedRedditRequest(category, { posts, receivedAt }) {
     this.reddits.updateOrInit(category, () => ({
       isFetching: false,
@@ -47,7 +49,4 @@ export default class RedditState {
   }
 }
 
-const updaters = ['startRedditRequest', 'succeedRedditRequest']
-export const RedditAct = methodsOf(RedditState, {
-  isUpdater: m => updaters.indexOf(m.name) >= 0
-})
+export const RedditAct = methodsOf(RedditState)
