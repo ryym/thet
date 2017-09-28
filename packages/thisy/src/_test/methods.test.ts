@@ -1,6 +1,6 @@
 import * as assert from 'assert'
-import { META_DATA_KEY } from '../consts'
-import { methodsOf, MetaData } from '../methods'
+import { META_DATA_KEY, MetaData } from '../consts'
+import { methodsOf } from '../methods'
 
 describe('methodsOf', () => {
   it('extracts methods from the given class', () => {

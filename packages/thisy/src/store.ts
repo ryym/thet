@@ -1,23 +1,19 @@
 import { makeSend, Send } from './send'
-import { META_DATA_KEY } from './consts'
-
-export interface Class<Proto> {
-  new(...args: any[]): Proto
-}
+import { META_DATA_KEY, Class } from './consts'
 
 export class Store {
   private states: Map<Function, {}> = new Map();
   private subscribers: Subscriber[] = [];
 
-  send: Send = makeSend((method: any, ...args: any[]): any => {
+  send: Send = makeSend((method: any, args: any[], meta: any): any => {
     if (typeof method !== 'function') {
       throw new Error(`'send' accepts functions only. passed: ${method}`)
     }
-    if (!(META_DATA_KEY in method)) {
+    if (meta == null) {
       return method(...args)
     }
 
-    const { clazz, isUpdater } = method[META_DATA_KEY]
+    const { clazz, isUpdater } = meta
     const state = this.states.get(clazz)
     if (state === undefined) {
       throw new Error(`${clazz} does not be managed by this store.`)

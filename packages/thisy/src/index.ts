@@ -1,10 +1,11 @@
-import { Send } from './send'
+import { Send, makeSend } from './send'
 import { Store } from './store'
 import { methodsOf, markAsUpdater } from './methods'
 
 export {
   Store,
   Send,
+  makeSend,
   methodsOf,
   markAsUpdater as updater
 }
