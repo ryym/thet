@@ -11,7 +11,7 @@
   "scripts": {
     "start": "root tsc -w",
     "build": "root tsc",
-    "test": "root mocha src/**/*.test.ts",
+    "test": "TS_NODE_CACHE=0 root mocha src/**/*.test.ts",
     "test:w": "npm run test -- --watch --watch-extensions ts"
   },
   "devDependencies": {
