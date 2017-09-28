@@ -10,7 +10,9 @@
   "files": ["src", "dist"],
   "scripts": {
     "start": "root tsc -w",
-    "build": "root tsc"
+    "build": "root tsc",
+    "test": "root mocha src/**/*.test.ts",
+    "test:w": "npm run test -- --watch --watch-extensions ts"
   },
   "devDependencies": {
     "thisy-root-bin": "file:../../root-bin"

@@ -1,4 +1,5 @@
-import { Class, META_DATA_KEY } from './store'
+import { Class } from './store'
+import { META_DATA_KEY } from './consts'
 
 // decorator function
 export function markAsUpdater(
@@ -16,6 +17,11 @@ const emptyConstructor = () => {
 // XXX: for now
 const defaultIsUpdater = (method: Function) => method.name[0] === '$'
 
+export type MetaData = {
+  clazz: Class<any>,
+  isUpdater: boolean,
+}
+
 export type MethodsOf = <Proto>(
   clazz: Class<Proto>,
   config?: { isUpdater: (method: Function) => boolean }
@@ -29,7 +35,7 @@ export const methodsOf: MethodsOf = (
 
   return Object.getOwnPropertyNames(clazz.prototype).reduce((ms: any, name) => {
     const method = clazz.prototype[name]
-    if (typeof method !== 'function' || method.name === 'constructor') {
+    if (typeof method !== 'function' || name === 'constructor') {
       return ms
     }
 

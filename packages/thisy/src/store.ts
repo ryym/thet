@@ -1,10 +1,9 @@
 import { makeSend, Send } from './send'
+import { META_DATA_KEY } from './consts'
 
 export interface Class<Proto> {
   new(...args: any[]): Proto
 }
-
-export const META_DATA_KEY = '__thisy__'
 
 export class Store {
   private states: Map<Function, {}> = new Map();
@@ -47,10 +46,6 @@ export class Store {
     return () => {
       this.subscribers = this.subscribers.filter(s => s !== sb)
     }
-  }
-
-  getState<P, C extends Class<P>>(clazz: C): P | undefined {
-    return <P>this.states.get(clazz)
   }
 }
 

@@ -1,0 +1,2 @@
+--compilers ts:ts-node/register
+--require test/setup.ts
