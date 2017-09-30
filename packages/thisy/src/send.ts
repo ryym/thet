@@ -19,7 +19,7 @@ export type SendHandler = (method: Function, args: any[], meta: MetaData) => voi
 
 export const makeSend = (handler: SendHandler): Send => {
   const send = (method: any, ...args: any[]) =>
-    handler(method, args, method[META_DATA_KEY])
+    handler(method, args, method ? method[META_DATA_KEY] : undefined)
 
   return Object.assign(send, {
     // It is nice if `to` could return a pre-bound function
