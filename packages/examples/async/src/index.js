@@ -7,9 +7,7 @@ import store, { Act } from './store';
 // Logging
 // TODO: Want to subscribe effect methods
 
-// TODO: Use decorator
-
-store.subscribe((method, store) => {
+store.subscribe((method) => {
   console.log(`Update: ${method.name}`, store.send(Act.takeSnapshot));
 });
 

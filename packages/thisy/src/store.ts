@@ -23,7 +23,7 @@ export class Store {
 
     if (isUpdater) {
       this.subscribers.forEach(sb => {
-        sb(method, this)
+        sb(method, args, this)
       })
     }
 
@@ -47,5 +47,6 @@ export class Store {
 
 export type Subscriber = (
   method: (...args: any[]) => any,
+  args: any[],
   store: Store
 ) => void
