@@ -16,7 +16,7 @@ export class Store {
     const { clazz, isUpdater } = meta
     const state = this.states.get(clazz)
     if (state === undefined) {
-      throw new Error(`${clazz} does not be managed by this store.`)
+      throw new Error(`${clazz.name} does not be managed by this store.`)
     }
 
     const result = method.apply(state, args)
