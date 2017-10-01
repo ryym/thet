@@ -5,7 +5,7 @@ import { TodoCounts } from '../lib/todo'
 import { Todos, Inputs } from '../store'
 import Header from './Header'
 import TodoTextInput from './TodoTextInput';
-import TodoList from './TodoList'
+import TodoList from './TodoList.connect'
 import Footer from './Footer'
 
 type Props = {
@@ -19,16 +19,22 @@ export function App({
   counts, filter, send, toggleCompletedAll
 }: Props) {
   return (
-    <div>
+    <section className="todoapp">
       <Header addTodo={send.to(Todos.$add)} />
       <section className="main">
         {counts.all > 0 && (
-          <input
-            className="toggle-all"
-            type="checkbox"
-            checked={counts.active === 0}
-            onChange={toggleCompletedAll}
-          />
+          <div>
+            <input
+              id="toggle-all"
+              className="toggle-all"
+              type="checkbox"
+              checked={counts.active === 0}
+              onChange={toggleCompletedAll}
+            />
+            <label htmlFor="toggle-all">
+              Mark all as complete
+            </label>
+          </div>
         )}
         <TodoList />
         {counts.all > 0 && (
@@ -41,7 +47,7 @@ export function App({
           />
         )}
       </section>
-    </div>
+    </section>
   )
 }
 

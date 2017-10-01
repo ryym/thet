@@ -21,8 +21,6 @@ module.exports = {
       {
         test: /\.tsx?$/,
         loaders: [
-          // 'babel-loader',
-          // 'awesome-typescript-loader',
           {
             loader: 'awesome-typescript-loader',
             options: {
@@ -33,6 +31,16 @@ module.exports = {
         include: [
           path.join(ROOT, 'src'),
         ]
+      },
+      {
+        test: /\.css$/,
+        loaders: [
+          'style-loader',
+          'css-loader',
+        ],
+        // include: [
+        //   path.join(ROOT, 'node_modules', 'todovc-app-css'),
+        // ]
       }
     ]
   },

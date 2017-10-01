@@ -8,12 +8,15 @@
     "counter": "webpack-dev-server --config counter/webpack.config.js",
     "todomvc": "webpack-dev-server --config todomvc/webpack.config.js",
     "async": "webpack-dev-server --config async/webpack.config.js",
-    "real-world": "node real-world/server.js"
+    "real-world": "node real-world/server.js",
+    "tslint": "root tslint --fix -t stylish 'todomvc/**/*.ts?(x)'",
+    "eslint": "root eslint --fix async counter real-world"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.3",
     "awesome-typescript-loader": "^3.2.3",
     "classnames": "^2.2.5",
+    "css-loader": "^0.28.7",
     "express": "^4.16.1",
     "humps": "^2.0.1",
     "isomorphic-fetch": "^2.2.1",
@@ -21,9 +24,11 @@
     "lodash.union": "^4.6.0",
     "lodash.zip": "^4.2.0",
     "normalizr": "^3.2.3",
+    "style-loader": "^0.18.2",
     "thisy": "^0",
     "thisy-react": "^0",
     "thisy-root-bin": "file:../../root-bin",
+    "todomvc-app-css": "^2.1.0",
     "webpack": "^3.6.0",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-dev-server": "^2.8.2",
