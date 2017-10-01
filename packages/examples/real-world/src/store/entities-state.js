@@ -1,5 +1,5 @@
 import { methodsOf } from 'thisy'
-import ResourceMap from './resource-map'
+import ResourceMap from './lib/resource-map'
 
 export default class EntitiesState {
   constructor({

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-
 import { connect } from 'thisy-react'
-import { AppA, RouterA, EntitiesA, PaginationsA } from '../store'
+import { RouterA, ReposA, StargazersA } from '../store'
 import User from './User'
 import Repo from './Repo'
 import List from './List'
@@ -10,8 +9,8 @@ export class RepoPage extends Component {
 
   loadOwnerAndRepos = (fullName) => {
     const { send } = this.props
-    send(AppA.loadRepo, fullName)
-    send(AppA.loadStargazers, fullName)
+    send(ReposA.load, fullName)
+    send(StargazersA.load, fullName)
   }
 
   componentWillMount() {
@@ -25,7 +24,7 @@ export class RepoPage extends Component {
   }
 
   handleLoadMoreClick = () => {
-    this.props.send(AppA.loadStargazers, this.props.fullName, true)
+    this.props.send(StargazersA.load, this.props.fullName, true)
   }
 
   renderUser = (user) => {
@@ -58,14 +57,15 @@ export class RepoPage extends Component {
 const mapProps = send => ({ match }) => {
   const { login, name } = match.params
   const fullName = `${login}/${name}`
+  const repo = send(ReposA.get, fullName)
 
   return {
     send,
     fullName,
-    repo: send(EntitiesA.getRepo, fullName),
-    owner: send(EntitiesA.getUser, login),
-    stargazers: send(AppA.getStargazers, fullName),
-    paginationInfo: send(PaginationsA.getStargazers, fullName),
+    repo,
+    owner: send(ReposA.getOwner, repo),
+    stargazers: send(StargazersA.get, fullName),
+    paginationInfo: send(StargazersA.getPagination, fullName),
   }
 }
 

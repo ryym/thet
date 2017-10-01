@@ -16,7 +16,7 @@ export default class Pagination {
   }
 
   get(key) {
-    return this.pagination.get(key)
+    return this.pagination.get(key) || {}
   }
 
   startFetching(key) {

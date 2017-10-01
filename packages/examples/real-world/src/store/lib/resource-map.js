@@ -1,4 +1,4 @@
-import KeyNormalizable from '../lib/key-normalizable'
+import KeyNormalizable from '../../lib/key-normalizable'
 import { normalizeKey } from './normalizers'
 
 export default class ResourceMap extends KeyNormalizable {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import zip from 'lodash.zip'
 import { connect } from 'thisy-react'
-import { AppA, RouterA, EntitiesA, PaginationsA } from '../store'
+import { RouterA, UsersA, ReposA, StarredA } from '../store'
 import User from './User'
 import Repo from './Repo'
 import List from './List'
@@ -18,8 +18,8 @@ export class UserPage extends Component {
 
   loadUserAndStarred = (login) => {
     const { send } = this.props
-    send(AppA.loadUser, login)
-    send(AppA.loadStarred, login)
+    send(UsersA.load, login)
+    send(StarredA.load, login)
   }
 
   componentWillMount() {
@@ -33,7 +33,7 @@ export class UserPage extends Component {
   }
 
   handleLoadMoreClick = () => {
-    this.props.send(AppA.loadStarred, this.props.login, true)
+    this.props.send(StarredA.load, this.props.login, true)
   }
 
   renderRepo([ repo, owner ]) {
@@ -71,15 +71,15 @@ export class UserPage extends Component {
 
 const mapProps = send => ({ match }) => {
   const { login } = match.params
-  const starredRepos = send(AppA.getStarredRepos, login)
-  const repoOwners = send(AppA.getOwners, starredRepos)
+  const starredRepos = send(StarredA.get, login)
+  const repoOwners = starredRepos.map(send.to(ReposA.getOwner))
 
   return {
     send,
     login,
-    user: send(EntitiesA.getUser, login),
+    user: send(UsersA.get, login),
     repos: zip(starredRepos, repoOwners),
-    paginationInfo: send(PaginationsA.getStarred, login),
+    paginationInfo: send(StarredA.getPagination, login),
   }
 }
 
