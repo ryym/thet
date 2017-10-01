@@ -1,22 +1,22 @@
 import * as React from 'react';
-import { connect } from 'thisy-react'
-import { Send } from 'thisy'
-import { TodoCounts } from '../lib/todo'
-import { Todos, Inputs } from '../store'
-import Header from './Header'
+import { connect } from 'thisy-react';
+import { Send } from 'thisy';
+import { TodoCounts } from '../lib/todo';
+import { Todos, Inputs } from '../store';
+import Header from './Header';
 import TodoTextInput from './TodoTextInput';
-import TodoList from './TodoList.connect'
-import Footer from './Footer'
+import TodoList from './TodoList.connect';
+import Footer from './Footer';
 
 type Props = {
   counts: TodoCounts,
   filter: string,
   send: Send,
   toggleCompletedAll: () => void,
-}
+};
 
 export function App({
-  counts, filter, send, toggleCompletedAll
+  counts, filter, send, toggleCompletedAll,
 }: Props) {
   return (
     <section className="todoapp">
@@ -48,16 +48,16 @@ export function App({
         )}
       </section>
     </section>
-  )
+  );
 }
 
 export default connect(App, {
-  mapProps: send => {
+  mapProps: (send) => {
     const toggleCompletedAll = (): void => {
-      const counts = send(Todos.getCounts)
+      const counts = send(Todos.getCounts);
       if (counts.all > 0) {
         const allCompleted = counts.active === 0;
-        send(Todos.$toggleCompletedAll, !allCompleted)
+        send(Todos.$toggleCompletedAll, !allCompleted);
       }
     };
     return () => ({
@@ -65,6 +65,6 @@ export default connect(App, {
       toggleCompletedAll,
       counts: send(Todos.getCounts),
       filter: send(Inputs.getCurrentFilter),
-    })
-  }
-})
+    });
+  },
+});

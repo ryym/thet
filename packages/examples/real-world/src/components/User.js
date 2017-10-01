@@ -1,8 +1,8 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const User = ({ user }) => {
-  const { login, avatarUrl, name } = user
+  const { login, avatarUrl, name } = user;
 
   return (
     <div className="User">
@@ -13,8 +13,8 @@ const User = ({ user }) => {
         </h3>
       </Link>
     </div>
-  )
-}
+  );
+};
 
 // User.propTypes = {
 //   user: PropTypes.shape({
@@ -24,4 +24,4 @@ const User = ({ user }) => {
 //   }).isRequired
 // }
 
-export default User
+export default User;

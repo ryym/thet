@@ -1,19 +1,19 @@
-import * as React from 'react'
-import contextTypes from './context-types'
-import { Store } from 'thisy'
+import * as React from 'react';
+import contextTypes from './context-types';
+import { Store } from 'thisy';
 
 export type ProviderProps = {
-  store: Store
-}
+  store: Store,
+};
 
 export default class Provider extends React.Component<ProviderProps> {
-  static childContextTypes = contextTypes
+  static childContextTypes = contextTypes;
 
   getChildContext() {
-    return { store: this.props.store }
+    return { store: this.props.store };
   }
 
   render() {
-    return React.Children.only(this.props.children)
+    return React.Children.only(this.props.children);
   }
 }

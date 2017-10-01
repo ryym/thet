@@ -22,7 +22,7 @@ app.get('/favicon.ico', (req, res) => res.status(404));
   app.get(appPath, (req, res) => {
     res.sendFile(indexPath);
   });
-})
+});
 
 app.listen(port, (error) => {
   if (error) {

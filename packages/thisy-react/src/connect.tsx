@@ -1,72 +1,72 @@
-import * as React from 'react'
-import { ComponentClass, StatelessComponent } from 'react'
-import shallowEqual from './utils/shallow-equal'
-import { Store, Send } from 'thisy'
-import contextTypes from './context-types'
+import * as React from 'react';
+import { ComponentClass, StatelessComponent } from 'react';
+import shallowEqual from './utils/shallow-equal';
+import { Store, Send } from 'thisy';
+import contextTypes from './context-types';
 
 export type ReactComponent<P> = ComponentClass<P> | StatelessComponent<P>;
 
 export type ConnectConfig<P, WP> = {
-  mapProps: (send: Send) => (wrapperProps: WP) => P
-}
+  mapProps: (send: Send) => (wrapperProps: WP) => P,
+};
 
 export type ConnectorState<P> = {
-  mappedProps: P
-}
+  mappedProps: P,
+};
 
 export default function connect<P, WP = {}>(
   WrappedComponent: ReactComponent<P>,
-  config: ConnectConfig<P, WP>
+  config: ConnectConfig<P, WP>,
 ): ComponentClass<WP> {
-  const { mapProps: makeMapProps } = config
+  const { mapProps: makeMapProps } = config;
 
   class Connected extends React.Component<WP, ConnectorState<P>> {
-    static contextTypes = contextTypes
+    static contextTypes = contextTypes;
 
-    private readonly store: Store
-    private readonly mapProps: (wrapperProps: WP) => P
-    private unsubscribe: (() => void) | null = null
+    private readonly store: Store;
+    private readonly mapProps: (wrapperProps: WP) => P;
+    private unsubscribe: (() => void) | null = null;
 
     constructor(props: WP, context: any) {
-      super(props, context)
-      this.store = context.store
-      this.mapProps = makeMapProps(this.store.send)
-      const mappedProps = this.mapProps(this.props)
-      this.state = { mappedProps }
+      super(props, context);
+      this.store = context.store;
+      this.mapProps = makeMapProps(this.store.send);
+      const mappedProps = this.mapProps(this.props);
+      this.state = { mappedProps };
     }
 
     render() {
-      return <WrappedComponent {...this.state.mappedProps} />
+      return <WrappedComponent {...this.state.mappedProps} />;
     }
 
     componentWillMount() {
       if (!this.unsubscribe) {
         this.unsubscribe = this.store.subscribe(() => {
-          this.updateMappedProps(this.props)
-        })
+          this.updateMappedProps(this.props);
+        });
       }
     }
 
     componentWillUnmount() {
       if (this.unsubscribe) {
-        this.unsubscribe()
-        this.unsubscribe = null
+        this.unsubscribe();
+        this.unsubscribe = null;
       }
     }
 
     componentWillReceiveProps(nextProps: WP) {
-      this.updateMappedProps(nextProps)
+      this.updateMappedProps(nextProps);
     }
 
     shouldComponentUpdate(nextProps: WP, nextState: ConnectorState<P>) {
-      return !shallowEqual(this.state.mappedProps, nextState.mappedProps)
+      return !shallowEqual(this.state.mappedProps, nextState.mappedProps);
     }
 
     updateMappedProps(props: WP) {
-      const mappedProps = this.mapProps(props)
-      this.setState({ mappedProps })
+      const mappedProps = this.mapProps(props);
+      this.setState({ mappedProps });
     }
   }
 
-  return Connected
+  return Connected;
 }

@@ -1,9 +1,9 @@
-import { methodsOf, updater } from 'thisy'
-import { RedditAct } from './reddit-state'
+import { methodsOf, updater } from 'thisy';
+import { RedditAct } from './reddit-state';
 
 export default class AppState {
   constructor(send, category = 'reactjs') {
-    this.send = send
+    this.send = send;
     this.category = category;
   }
 
@@ -17,21 +17,21 @@ export default class AppState {
   }
 
   loadInitialReddit() {
-    return this.send(RedditAct.fetchReddit, this.category)
+    return this.send(RedditAct.fetchReddit, this.category);
   }
 
   changeCategory(category) {
     const prevCategory = this.category;
 
-    this.send(this.setCategory, category)
+    this.send(this.setCategory, category);
     if (prevCategory !== category && !this.send(RedditAct.hasReddit, category)) {
-      return this.send(RedditAct.fetchReddit, category)
+      return this.send(RedditAct.fetchReddit, category);
     }
     return Promise.resolve();
   }
 
   invalidateCategory(category) {
-    return this.send(RedditAct.fetchReddit, category)
+    return this.send(RedditAct.fetchReddit, category);
   }
 
   takeSnapshot() {
@@ -42,4 +42,4 @@ export default class AppState {
   }
 }
 
-export const Act = methodsOf(AppState)
+export const Act = methodsOf(AppState);

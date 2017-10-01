@@ -10,7 +10,8 @@
   "files": ["src", "dist"],
   "scripts": {
     "start": "root tsc -w",
-    "build": "root tsc"
+    "build": "root tsc",
+    "tslint": "root tslint --fix -t stylish 'src/**/*.ts?(x)'"
   },
   "devDependencies": {
     "thisy": "^0",

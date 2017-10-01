@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'thisy-react'
+import { Provider } from 'thisy-react';
 import App from './components/App.connect';
 import store, { Act } from './store';
 
@@ -11,7 +11,7 @@ store.subscribe((method) => {
   console.log(`Update: ${method.name}`, store.send(Act.takeSnapshot));
 });
 
-store.send(Act.loadInitialReddit)
+store.send(Act.loadInitialReddit);
 
 render(
   <Provider store={store}>

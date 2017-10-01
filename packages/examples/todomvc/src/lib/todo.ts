@@ -1,13 +1,13 @@
-let _incrementalId = 1;
+let incrementalId = 1;
 
 type InitialProps = {
   title: string,
   completed?: boolean,
-}
+};
 
 export class Todo {
   static create(props: InitialProps): Todo {
-    const id = _incrementalId++;
+    const id = incrementalId++;
     return new Todo(id, props);
   }
 
@@ -26,4 +26,4 @@ export type TodoCounts = {
   all: number,
   active: number,
   completed: number,
-}
+};

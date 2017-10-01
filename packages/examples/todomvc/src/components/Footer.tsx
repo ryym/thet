@@ -14,7 +14,7 @@ type Props = {
   filter: string,
   onClearCompleted: () => void,
   onShow: (filter: string) => void,
-}
+};
 
 export default class Footer extends React.Component<Props> {
   renderTodoCount() {
@@ -61,10 +61,10 @@ export default class Footer extends React.Component<Props> {
       <footer className="footer">
         {this.renderTodoCount()}
         <ul className="filters">
-          {[ SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED ].map(filter =>
+          {[SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED].map((filter) =>
             <li key={filter}>
               {this.renderFilterLink(filter)}
-            </li>
+            </li>,
           )}
         </ul>
         {this.renderClearButton()}
@@ -72,4 +72,3 @@ export default class Footer extends React.Component<Props> {
     );
   }
 }
-

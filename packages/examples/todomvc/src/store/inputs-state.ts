@@ -1,10 +1,10 @@
-import { methodsOf } from 'thisy'
+import { methodsOf } from 'thisy';
 import { SHOW_ALL } from '../lib/todo-filters';
 
 export default class InputState {
   constructor(
     private filter: string = SHOW_ALL,
-    private editedId: number | null = null
+    private editedId: number | null = null,
   ) {}
 
   getCurrentFilter(): string {
@@ -28,4 +28,4 @@ export default class InputState {
   }
 }
 
-export const Inputs = methodsOf(InputState)
+export const Inputs = methodsOf(InputState);

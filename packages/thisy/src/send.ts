@@ -1,4 +1,4 @@
-import { META_DATA_KEY, MetaData } from './consts'
+import { META_DATA_KEY, MetaData } from './consts';
 
 export interface SendFunc {
   <R>(method: () => R): R;
@@ -15,15 +15,15 @@ export interface Send {
   to<A, B, R>(method: (a: A, b: B) => R): (a: A, b: B) => R;
 }
 
-export type SendHandler = (method: Function, args: any[], meta: MetaData) => void
+export type SendHandler = (method: Function, args: any[], meta: MetaData) => void;
 
 export const makeSend = (handler: SendHandler): Send => {
   const send = (method: any, ...args: any[]) =>
-    handler(method, args, method ? method[META_DATA_KEY] : undefined)
+    handler(method, args, method ? method[META_DATA_KEY] : undefined);
 
   return Object.assign(send, {
     // It is nice if `to` could return a pre-bound function
     // instead of creating a new function every time.
-    to: (method: any) => (...args: any[]) => send(method, ...args)
-  })
-}
+    to: (method: any) => (...args: any[]) => send(method, ...args),
+  });
+};

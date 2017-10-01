@@ -10,7 +10,7 @@ type Props = {
   onCompletedToggle: (id: number) => void,
   onEditStart: (id: number) => void,
   onEditEnd: (id: number, title: string) => void,
-}
+};
 
 export default class TodoItem extends React.Component<Props> {
   renderEditableItem(todo: Todo) {
@@ -62,4 +62,3 @@ export default class TodoItem extends React.Component<Props> {
     );
   }
 }
-

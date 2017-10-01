@@ -1,5 +1,5 @@
-import { makeSend, Send } from './send'
-import { META_DATA_KEY, Class } from './consts'
+import { makeSend, Send } from './send';
+import { META_DATA_KEY, Class } from './consts';
 
 export class Store {
   private states: Map<Function, {}> = new Map();
@@ -7,46 +7,46 @@ export class Store {
 
   send: Send = makeSend((method: any, args: any[], meta: any): any => {
     if (typeof method !== 'function') {
-      throw new Error(`'send' accepts functions only. passed: ${method}`)
+      throw new Error(`'send' accepts functions only. passed: ${method}`);
     }
     if (meta == null) {
-      return method(...args)
+      return method(...args);
     }
 
-    const { clazz, isUpdater } = meta
-    const state = this.states.get(clazz)
+    const { clazz, isUpdater } = meta;
+    const state = this.states.get(clazz);
     if (state === undefined) {
-      throw new Error(`${clazz.name} does not be managed by this store.`)
+      throw new Error(`${clazz.name} does not be managed by this store.`);
     }
 
-    const result = method.apply(state, args)
+    const result = method.apply(state, args);
 
     if (isUpdater) {
-      this.subscribers.forEach(sb => {
-        sb(method, args, this)
-      })
+      this.subscribers.forEach((sb) => {
+        sb(method, args, this);
+      });
     }
 
-    return result
-  })
+    return result;
+  });
 
   watch = (states: Array<{}>): void => {
-    this.states = new Map()
-    states.forEach(state => {
-      this.states.set(state.constructor, state)
-    })
+    this.states = new Map();
+    states.forEach((state) => {
+      this.states.set(state.constructor, state);
+    });
   }
 
   subscribe = (sb: Subscriber): () => void => {
-    this.subscribers.push(sb)
+    this.subscribers.push(sb);
     return () => {
-      this.subscribers = this.subscribers.filter(s => s !== sb)
-    }
+      this.subscribers = this.subscribers.filter((s) => s !== sb);
+    };
   }
 }
 
 export type Subscriber = (
   method: (...args: any[]) => any,
   args: any[],
-  store: Store
-) => void
+  store: Store,
+) => void;

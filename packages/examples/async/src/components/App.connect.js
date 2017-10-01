@@ -1,14 +1,15 @@
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'thisy-react'
-import { Act } from '../store'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'thisy-react';
+import { Act } from '../store';
 import Picker from '../components/Picker';
 import Posts from '../components/Posts';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.handleChange = this.handleChange.bind(this)
-    this.handleRefreshClick = this.handleRefreshClick.bind(this)
+    this.handleChange = this.handleChange.bind(this);
+    this.handleRefreshClick = this.handleRefreshClick.bind(this);
   }
 
   handleChange(category) {
@@ -31,27 +32,27 @@ class App extends Component {
           options={['reactjs', 'frontend']}
         />
         <p>
-          {lastUpdated &&
-            <span>
+          {lastUpdated
+            && <span>
               Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
               {' '}
             </span>
           }
-          {!isFetching &&
-            <a href="#" onClick={this.handleRefreshClick}>
+          {!isFetching
+            && <a href="#" onClick={this.handleRefreshClick}>
               Refresh
             </a>
           }
         </p>
 
-        {isFetching && posts.length === 0 &&
-          <h2>Loading...</h2>
+        {isFetching && posts.length === 0
+          && <h2>Loading...</h2>
         }
-        {!isFetching && posts.length === 0 &&
-          <h2>Empty.</h2>
+        {!isFetching && posts.length === 0
+          && <h2>Empty.</h2>
         }
-        {posts.length > 0 &&
-          <div style={{ opacity: isFetching ? 0.5 : 1 }}>
+        {posts.length > 0
+          && <div style={{ opacity: isFetching ? 0.5 : 1 }}>
             <Posts posts={posts} />
           </div>
         }
@@ -70,12 +71,12 @@ App.propTypes = {
 };
 
 const mapProps = send => () => {
-  const category = send(Act.getCurrentCategory)
+  const category = send(Act.getCurrentCategory);
   const {
     posts,
     isFetching,
     lastUpdated,
-  } = send(Act.getOrInitReddit, category)
+  } = send(Act.getOrInitReddit, category);
   return {
     category,
     posts,
@@ -83,7 +84,7 @@ const mapProps = send => () => {
     lastUpdated,
     changeCategory: send.to(Act.changeCategory),
     invalidate: send.to(Act.invalidateCategory),
-  }
-}
+  };
+};
 
 export default connect(App, { mapProps });

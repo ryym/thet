@@ -12,7 +12,8 @@
     "start": "root tsc -w",
     "build": "root tsc",
     "test": "TS_NODE_CACHE=0 root mocha src/**/*.test.ts",
-    "test:w": "npm run test -- --watch --watch-extensions ts"
+    "test:w": "npm run test -- --watch --watch-extensions ts",
+    "tslint": "root tslint --fix -t stylish 'src/**/*.ts'"
   },
   "devDependencies": {
     "thisy-root-bin": "file:../../root-bin"

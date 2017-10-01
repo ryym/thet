@@ -1,9 +1,9 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Repo = ({ repo, owner }) => {
-  const { login } = owner
-  const { name, description } = repo
+  const { login } = owner;
+  const { name, description } = repo;
 
   return (
     <div className="Repo">
@@ -16,12 +16,12 @@ const Repo = ({ repo, owner }) => {
           {login}
         </Link>
       </h3>
-      {description &&
-        <p>{description}</p>
+      {description
+        && <p>{description}</p>
       }
     </div>
-  )
-}
+  );
+};
 
 // Repo.propTypes = {
 //   repo: PropTypes.shape({
@@ -33,4 +33,4 @@ const Repo = ({ repo, owner }) => {
 //   }).isRequired
 // }
 
-export default Repo
+export default Repo;

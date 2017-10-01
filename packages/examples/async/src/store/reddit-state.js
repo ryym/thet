@@ -1,12 +1,12 @@
-import { methodsOf, updater } from 'thisy'
+import { methodsOf, updater } from 'thisy';
 import RedditMap from './reddit-map';
 import fetchRedditPosts from '../api/fetch-reddit-posts';
 
 export default class RedditState {
   constructor(send, fetchPosts = fetchRedditPosts) {
-    this.send = send
+    this.send = send;
     this.reddits = new RedditMap();
-    this.fetchPosts = fetchPosts
+    this.fetchPosts = fetchPosts;
   }
 
   getOrInitReddit(category) {
@@ -18,12 +18,12 @@ export default class RedditState {
   }
 
   fetchReddit(category) {
-    this.send(this.startRedditRequest, category)
+    this.send(this.startRedditRequest, category);
     return this.fetchPosts(category).then(posts => {
       this.send(this.succeedRedditRequest, category, {
         posts,
         receivedAt: Date.now(),
-      })
+      });
     });
   }
 
@@ -49,4 +49,4 @@ export default class RedditState {
   }
 }
 
-export const RedditAct = methodsOf(RedditState)
+export const RedditAct = methodsOf(RedditState);

@@ -3,7 +3,7 @@ import TodoTextInput from './TodoTextInput';
 
 type Props = {
   addTodo: (title: string) => void,
-}
+};
 
 export default class Header extends React.Component<Props> {
   handleSave = (text: string) => {
@@ -26,4 +26,3 @@ export default class Header extends React.Component<Props> {
     );
   }
 }
-

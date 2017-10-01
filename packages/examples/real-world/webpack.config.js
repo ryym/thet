@@ -1,7 +1,7 @@
-const path = require('path')
-const webpack = require('webpack')
+const path = require('path');
+const webpack = require('webpack');
 
-const ROOT = __dirname
+const ROOT = __dirname;
 
 module.exports = {
   entry: [
@@ -21,8 +21,8 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         include: path.join(ROOT, 'src'),
-      }
-    ]
+      },
+    ],
   },
 
   plugins: [
@@ -30,5 +30,5 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'),
     }),
-  ]
-}
+  ],
+};

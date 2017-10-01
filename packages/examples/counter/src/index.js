@@ -1,24 +1,24 @@
-import * as React from 'react'
-import { render } from 'react-dom'
-import { makeStore, methodsOf } from 'thisy'
+import * as React from 'react';
+import { render } from 'react-dom';
+import { makeStore, methodsOf } from 'thisy';
 
 class CounterState {
   constructor(send, count = 0) {
-    this.send = send
-    this.count = count
+    this.send = send;
+    this.count = count;
   }
 
   getCount() {
-    return this.count
+    return this.count;
   }
 
   $increment() {
-    this.count += 1
+    this.count += 1;
   }
 
   $incrementIfOdd() {
     if (this.count % 2 === 1) {
-      this.count += 1
+      this.count += 1;
     }
   }
 
@@ -26,12 +26,12 @@ class CounterState {
   // decorator が使えれば一番良い。
   incrementAsync(delay) {
     setTimeout(() => {
-      this.send(this.$increment)
-    }, delay)
+      this.send(this.$increment);
+    }, delay);
   }
 }
 
-const C = methodsOf(CounterState)
+const C = methodsOf(CounterState);
 
 const Counter = ({ value = 0, send }) => {
   return (
@@ -53,20 +53,20 @@ const Counter = ({ value = 0, send }) => {
 };
 
 const renderCounter = (store) => {
-  const count = store.send(C.getCount)
+  const count = store.send(C.getCount);
   render(
     <Counter value={count} send={store.send} />,
     document.getElementById('root')
-  )
-}
+  );
+};
 
 const store = makeStore(send => [
-  new CounterState(send)
-])
+  new CounterState(send),
+]);
 
 store.subscribe((method) => {
-  console.log('Dispatched', method.name, store.getState(CounterState))
-  renderCounter(store)
-})
+  console.log('Dispatched', method.name, store.getState(CounterState));
+  renderCounter(store);
+});
 
-renderCounter(store)
+renderCounter(store);

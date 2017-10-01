@@ -1,39 +1,39 @@
-import 'isomorphic-fetch'
+import 'isomorphic-fetch';
 
-const API_ROOT = 'https://api.github.com'
+const API_ROOT = 'https://api.github.com';
 
 export const fetchUser = login =>
-  fetchData(`${API_ROOT}/users/${login}`)
+  fetchData(`${API_ROOT}/users/${login}`);
 
 export const fetchStarred = (login, nextPageUrl) =>
-  fetchData(nextPageUrl || `${API_ROOT}/users/${login}/starred`)
+  fetchData(nextPageUrl || `${API_ROOT}/users/${login}/starred`);
 
 export const fetchRepo = fullName =>
-  fetchData(`${API_ROOT}/repos/${fullName}`)
+  fetchData(`${API_ROOT}/repos/${fullName}`);
 
 export const fetchStargazers = (fullName, nextPageUrl) =>
-  fetchData(nextPageUrl || `${API_ROOT}/repos/${fullName}/stargazers`)
+  fetchData(nextPageUrl || `${API_ROOT}/repos/${fullName}/stargazers`);
 
 function fetchData(url) {
   return fetch(url).then(res => res.json().then(data => {
     if (!res.ok) {
-      return Promise.reject(data)
+      return Promise.reject(data);
     }
-    const nextPageUrl = getNextPageUrl(res)
-    return { data, nextPageUrl }
-  }))
+    const nextPageUrl = getNextPageUrl(res);
+    return { data, nextPageUrl };
+  }));
 }
 
 const getNextPageUrl = res => {
-  const link = res.headers.get('link')
+  const link = res.headers.get('link');
   if (!link) {
-    return null
+    return null;
   }
 
-  const nextLink = link.split(',').find(s => s.indexOf('rel="next"') > -1)
+  const nextLink = link.split(',').find(s => s.indexOf('rel="next"') > -1);
   if (!nextLink) {
-    return null
+    return null;
   }
 
-  return nextLink.split(';')[0].slice(1, -1)
-}
+  return nextLink.split(';')[0].slice(1, -1);
+};

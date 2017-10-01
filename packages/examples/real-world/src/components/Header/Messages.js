@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 export default function Messages({ message, dismiss }) {
   if (!message) {
-    return null
+    return null;
   }
   return (
     <p style={{ backgroundColor: '#e99', padding: 10 }}>
@@ -12,5 +12,5 @@ export default function Messages({ message, dismiss }) {
         Dismiss
       </a>
     </p>
-  )
+  );
 }

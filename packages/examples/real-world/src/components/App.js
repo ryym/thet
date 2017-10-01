@@ -1,12 +1,8 @@
-import React from 'react'
-import { Router, Route, Link } from 'react-router-dom'
-import { connect } from 'thisy-react'
-import { RouterA } from '../store'
-import Header from './Header'
-import UserPage from './UserPage'
-import RepoPage from './RepoPage'
-
-const GITHUB_REPO = 'https://github.com/ryym/thisy'
+import React from 'react';
+import { Router, Route } from 'react-router-dom';
+import Header from './Header';
+import UserPage from './UserPage';
+import RepoPage from './RepoPage';
 
 export default function App({ history }) {
   return (
@@ -17,5 +13,5 @@ export default function App({ history }) {
         <Route path="/:login/:name" component={RepoPage} />
       </div>
     </Router>
-  )
+  );
 }

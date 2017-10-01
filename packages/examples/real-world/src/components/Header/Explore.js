@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export default class Explore extends Component {
   // static propTypes = {
@@ -7,29 +7,29 @@ export default class Explore extends Component {
   // }
 
   constructor(props) {
-    super(props)
-    this.state = { value: props.value }
+    super(props);
+    this.state = { value: props.value };
   }
 
   // To set value from URL
   componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.state.value) {
-      this.setState({ value: nextProps.value })
+      this.setState({ value: nextProps.value });
     }
   }
 
   changeValue = (event) => this.setState({
-    value: event.target.value
+    value: event.target.value,
   })
 
-  handleKeyUp = (e) => {
-    if (e.keyCode === 13) {
-      this.handleGoClick()
+  handleKeyUp = (event) => {
+    if (event.keyCode === 13) {
+      this.handleGoClick();
     }
   }
 
   handleGoClick = () => {
-    this.props.onChange(this.state.value)
+    this.props.onChange(this.state.value);
   }
 
   render() {
@@ -48,7 +48,7 @@ export default class Explore extends Component {
           Go!
         </button>
       </div>
-    )
+    );
   }
 }
 

@@ -1,17 +1,17 @@
-import { methodsOf } from 'thisy'
+import { methodsOf } from 'thisy';
 
 export default class Messages {
   constructor() {
-    this.message = ""
+    this.message = '';
   }
 
   getMessage() {
-    return this.message
+    return this.message;
   }
 
   $setMessage(message) {
-    this.message = message
+    this.message = message;
   }
 }
 
-export const MessagesA = methodsOf(Messages)
+export const MessagesA = methodsOf(Messages);

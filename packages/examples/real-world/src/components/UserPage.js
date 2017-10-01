@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import zip from 'lodash.zip'
-import { connect } from 'thisy-react'
-import { RouterA, UsersA, ReposA, StarredA } from '../store'
-import User from './User'
-import Repo from './Repo'
-import List from './List'
+import React, { Component } from 'react';
+import zip from 'lodash.zip';
+import { connect } from 'thisy-react';
+import { UsersA, ReposA, StarredA } from '../store';
+import User from './User';
+import Repo from './Repo';
+import List from './List';
 
 export class UserPage extends Component {
   // static propTypes = {
@@ -17,23 +17,23 @@ export class UserPage extends Component {
   // }
 
   loadUserAndStarred = (login) => {
-    const { send } = this.props
-    send(UsersA.load, login)
-    send(StarredA.load, login)
+    const { send } = this.props;
+    send(UsersA.load, login);
+    send(StarredA.load, login);
   }
 
   componentWillMount() {
-    this.loadUserAndStarred(this.props.login)
+    this.loadUserAndStarred(this.props.login);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.login !== this.props.login) {
-      this.loadUserAndStarred(nextProps.login)
+      this.loadUserAndStarred(nextProps.login);
     }
   }
 
   handleLoadMoreClick = () => {
-    this.props.send(StarredA.load, this.props.login, true)
+    this.props.send(StarredA.load, this.props.login, true);
   }
 
   renderRepo([ repo, owner ]) {
@@ -43,16 +43,16 @@ export class UserPage extends Component {
         owner={owner}
         key={repo.fullName}
       />
-    )
+    );
   }
 
   render() {
-    const { user, login } = this.props
+    const { user, login } = this.props;
     if (!user) {
-      return <h1><i>Loading {login}{"'s profile..."}</i></h1>
+      return <h1><i>Loading {login}{"'s profile..."}</i></h1>;
     }
 
-    const { paginationInfo, repos } = this.props
+    const { paginationInfo, repos } = this.props;
     return (
       <div>
         <User user={user} />
@@ -65,14 +65,14 @@ export class UserPage extends Component {
           {...paginationInfo /* pageCount, nextPageUrl, isFetching */}
         />
       </div>
-    )
+    );
   }
 }
 
 const mapProps = send => ({ match }) => {
-  const { login } = match.params
-  const starredRepos = send(StarredA.get, login)
-  const repoOwners = starredRepos.map(send.to(ReposA.getOwner))
+  const { login } = match.params;
+  const starredRepos = send(StarredA.get, login);
+  const repoOwners = starredRepos.map(send.to(ReposA.getOwner));
 
   return {
     send,
@@ -80,7 +80,7 @@ const mapProps = send => ({ match }) => {
     user: send(UsersA.get, login),
     repos: zip(starredRepos, repoOwners),
     paginationInfo: send(StarredA.getPagination, login),
-  }
-}
+  };
+};
 
-export default connect(UserPage, { mapProps })
+export default connect(UserPage, { mapProps });

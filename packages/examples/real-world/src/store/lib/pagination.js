@@ -1,9 +1,9 @@
-import union from 'lodash.union'
-import ResourceMap from './resource-map'
+import union from 'lodash.union';
+import ResourceMap from './resource-map';
 
 export default class Pagination {
   constructor(resource = new ResourceMap()) {
-    this.pagination = resource
+    this.pagination = resource;
   }
 
   getInitialState() {
@@ -11,19 +11,19 @@ export default class Pagination {
       isFetching: false,
       nextPageUrl: undefined,
       pageCount: 0,
-      ids: []
-    }
+      ids: [],
+    };
   }
 
   get(key) {
-    return this.pagination.get(key) || {}
+    return this.pagination.get(key) || {};
   }
 
   startFetching(key) {
     this.pagination.update(key, pg => ({
       ...pg,
-      isFetching: true
-    }), this.getInitialState())
+      isFetching: true,
+    }), this.getInitialState());
   }
 
   finishFetching(key, { ids, nextPageUrl }) {
@@ -31,11 +31,11 @@ export default class Pagination {
       isFetching: false,
       pageCount: pg.pageCount + 1,
       nextPageUrl,
-      ids: union(pg.ids, ids)
-    }))
+      ids: union(pg.ids, ids),
+    }));
   }
 
   toObject() {
-    return this.pagination.toObject()
+    return this.pagination.toObject();
   }
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export default class List extends Component {
   // static propTypes = {
@@ -13,11 +13,11 @@ export default class List extends Component {
 
   static defaultProps = {
     isFetching: true,
-    loadingLabel: 'Loading...'
+    loadingLabel: 'Loading...',
   }
 
   renderLoadMore() {
-    const { isFetching, onLoadMoreClick } = this.props
+    const { isFetching, onLoadMoreClick } = this.props;
     return (
       <button
         style={{ fontSize: '150%' }}
@@ -26,21 +26,21 @@ export default class List extends Component {
       >
         {isFetching ? 'Loading...' : 'Load More'}
       </button>
-    )
+    );
   }
 
   render() {
     const {
-      isFetching, nextPageUrl, pageCount,
-      items, renderItem, loadingLabel
-    } = this.props
+      isFetching, nextPageUrl,
+      items, renderItem, loadingLabel,
+    } = this.props;
 
     if (items.length === 0) {
       if (isFetching) {
-        return <h2><i>{loadingLabel}</i></h2>
+        return <h2><i>{loadingLabel}</i></h2>;
       }
       if (!nextPageUrl) {
-        return <h1><i>Nothing here!</i></h1>
+        return <h1><i>Nothing here!</i></h1>;
       }
     }
 
@@ -49,6 +49,6 @@ export default class List extends Component {
         {items.map(renderItem)}
         {nextPageUrl && this.renderLoadMore()}
       </div>
-    )
+    );
   }
 }

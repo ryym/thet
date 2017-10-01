@@ -1,43 +1,43 @@
-import React, { Component } from 'react'
-import { connect } from 'thisy-react'
-import { RouterA, ReposA, StargazersA } from '../store'
-import User from './User'
-import Repo from './Repo'
-import List from './List'
+import React, { Component } from 'react';
+import { connect } from 'thisy-react';
+import { ReposA, StargazersA } from '../store';
+import User from './User';
+import Repo from './Repo';
+import List from './List';
 
 export class RepoPage extends Component {
 
   loadOwnerAndRepos = (fullName) => {
-    const { send } = this.props
-    send(ReposA.load, fullName)
-    send(StargazersA.load, fullName)
+    const { send } = this.props;
+    send(ReposA.load, fullName);
+    send(StargazersA.load, fullName);
   }
 
   componentWillMount() {
-    this.loadOwnerAndRepos(this.props.fullName)
+    this.loadOwnerAndRepos(this.props.fullName);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.fullName !== this.props.fullName) {
-      this.loadOwnerAndRepos(nextProps.fullName)
+      this.loadOwnerAndRepos(nextProps.fullName);
     }
   }
 
   handleLoadMoreClick = () => {
-    this.props.send(StargazersA.load, this.props.fullName, true)
+    this.props.send(StargazersA.load, this.props.fullName, true);
   }
 
   renderUser = (user) => {
-    return <User user={user} key={user.login} />
+    return <User user={user} key={user.login} />;
   }
 
   render() {
-    const { repo, owner, name } = this.props
+    const { repo, owner, name } = this.props;
     if (!repo || !owner) {
-      return <h1><i>Loading {name} details...</i></h1>
+      return <h1><i>Loading {name} details...</i></h1>;
     }
 
-    const { stargazers, paginationInfo } = this.props
+    const { stargazers, paginationInfo } = this.props;
     return (
       <div>
         <Repo repo={repo} owner={owner} />
@@ -50,14 +50,14 @@ export class RepoPage extends Component {
           {...paginationInfo}
         />
       </div>
-    )
+    );
   }
 }
 
 const mapProps = send => ({ match }) => {
-  const { login, name } = match.params
-  const fullName = `${login}/${name}`
-  const repo = send(ReposA.get, fullName)
+  const { login, name } = match.params;
+  const fullName = `${login}/${name}`;
+  const repo = send(ReposA.get, fullName);
 
   return {
     send,
@@ -66,7 +66,7 @@ const mapProps = send => ({ match }) => {
     owner: send(ReposA.getOwner, repo),
     stargazers: send(StargazersA.get, fullName),
     paginationInfo: send(StargazersA.getPagination, fullName),
-  }
-}
+  };
+};
 
-export default connect(RepoPage, { mapProps })
+export default connect(RepoPage, { mapProps });

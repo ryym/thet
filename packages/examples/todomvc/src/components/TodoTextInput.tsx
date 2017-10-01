@@ -9,16 +9,16 @@ type Props = {
   placeholder?: string,
   editing?: boolean,
   newTodo?: boolean,
-}
+};
 
 type State = {
   text: string,
-}
+};
 
 export default class TodoTextInput extends React.Component<Props, State> {
   state = {
     text: this.props.text,
-  }
+  };
 
   handleSubmit = (event: any) => {
     const text = event.target.value.trim();
@@ -42,7 +42,7 @@ export default class TodoTextInput extends React.Component<Props, State> {
     return (
       <input
         className={classnames({
-          edit: this.props.editing,
+          'edit': this.props.editing,
           'new-todo': this.props.newTodo,
         })}
         type="text"
@@ -56,4 +56,3 @@ export default class TodoTextInput extends React.Component<Props, State> {
     );
   }
 }
-
